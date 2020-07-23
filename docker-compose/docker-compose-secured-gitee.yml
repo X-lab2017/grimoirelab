@@ -1,0 +1,62 @@
+version: '2.2'
+
+services:
+    mariadb:
+      image: mariadb:10.0
+      expose:
+        - "3306"
+      environment:
+        - MYSQL_ROOT_PASSWORD=
+        - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
+    hatstall:
+      image: grimoirelab/hatstall:latest
+      environment:
+        - DATABASE_DIR=/db/
+        - ADMIN_USER=admin
+        - ADMIN_PASS=admin
+      ports:
+        - 8000:80
+      links:
+        - mariadb
+      volumes:
+        - ../default-grimoirelab-settings/apache-hatstall.conf:/home/grimoirelab/apache-hatstall.conf
+        - ../default-grimoirelab-settings/shdb.cfg:/home/grimoirelab/shdb.cfg
+
+    elasticsearch:
+      image: bitergia/elasticsearch:6.8.6-secured
+      command: elasticsearch -Enetwork.bind_host=0.0.0.0 -Ehttp.max_content_length=2000mb
+      ports:
+        - 9200:9200
+      environment:
+        - ES_JAVA_OPTS=-Xms2g -Xmx2g
+
+    kibiter:
+      restart: on-failure:5
+      image: bitergia/kibiter:secured-v6.8.6-3
+      environment:
+        - PROJECT_NAME=Demo
+        - NODE_OPTIONS=--max-old-space-size=1000
+        - ELASTICSEARCH_USER=kibanaserver
+        - ELASTICSEARCH_PASSWORD=kibanaserver
+        - ELASTICSEARCH_URL=["https://elasticsearch:9200"]
+        - LOGIN_SUBTITLE=If you have forgotten your username or password ...
+      links:
+        - elasticsearch
+      ports:
+        - 5601:5601
+
+    mordred:
+      restart: on-failure:5
+      image: heming6666/sirmordred:latest
+      volumes:
+        - ../default-grimoirelab-settings/setup-secured-gitee.cfg:/home/bitergia/conf/setup.cfg
+        - ../default-grimoirelab-settings/aliases.json:/home/bitergia/conf/aliases.json
+        - ../default-grimoirelab-settings/projects-gitee.json:/home/bitergia/conf/projects.json
+        - ../default-grimoirelab-settings/organizations.json:/home/bitergia/conf/organizations.json
+        - ../default-grimoirelab-settings/identities.yml:/home/bitergia/conf/identities.yml
+        - /tmp/:/home/bitergia/logs
+      depends_on:
+        - mariadb
+        - elasticsearch
+      mem_limit: 4g
