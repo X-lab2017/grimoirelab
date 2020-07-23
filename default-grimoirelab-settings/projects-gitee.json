@@ -1,0 +1,18 @@
+{
+  "hypertrons": {
+    "git": [
+      "https://github.com/hypertrons/hypertrons.git"
+    ]
+  },
+  "gitee-example": {
+    "gitee": [
+      "https://gitee.com/willemjiang/gitee-example"
+    ],
+    "gitee:pull": [
+      "https://gitee.com/willemjiang/gitee-example"
+    ],
+    "gitee:repo": [
+      "https://gitee.com/willemjiang/gitee-example"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+    "grimoirelab": [
+        {
+            "name": "grimoirelab",
+            "dir": "",
+            "repo_url": "https://github.com/X-lab2017/grimoirelab",
+            "version_file": "grimoirelab/_version.py"
+        }
+    ],
+    "perceval-gitee": [
+        {
+            "name": "perceval-gitee",
+            "dir": "",
+            "repo_url": "https://github.com/WillemJiang/grimoirelab-perceval-gitee",
+            "version_file": "setup.py",
+            "check_run": "perceval gitee --help"
+        }
+    ],
+    "grimoireelk": [
+        {
+            "name": "grimoire-elk",
+            "dir": "",
+            "repo_url": "https://github.com/X-lab2017/grimoirelab-elk",
+            "version_file": "grimoire_elk/_version.py",
+            "check_run": "p2o.py --help"
+        }
+    ],
+    "grimoireelk-gitee": [
+        {
+            "name": "grimoire-elk-gitee",
+            "dir": "",
+            "repo_url": "https://github.com/X-lab2017/grimoirelab-elk-gitee",
+            "version_file": "setup.py"
+        }
+    ],
+    "sigils": [
+        {
+            "name": "grimoirelab-panels",
+            "dir": "",
+            "repo_url": "https://github.com/X-lab2017/grimoirelab-sigils/",
+            "version_file": "panels/_version.py"
+        }
+    ]
+}

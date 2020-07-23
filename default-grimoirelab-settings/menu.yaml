@@ -319,3 +319,39 @@
   menu:
   - name: Overview
     panel: panels/json/testing_all.json
+- name: Gitee PRs
+  source: gitee
+  icon: default.png
+  index-patterns:
+  - panels/json/gitee_issues-index-pattern.json
+  menu:
+  - name: Overview
+    panel: panels/json/gitee_pull_requests.json
+  - name: Backlog
+    panel: panels/json/gitee_pull_requests_backlog.json
+  - name: Timing
+    panel: panels/json/gitee_pull_requests_timing.json
+  - name: Efficiency
+    panel: panels/json/gitee_pull_requests_efficiency.json
+- name: Gitee Issues
+  source: gitee
+  icon: default.png
+  index-patterns:
+  - panels/json/gitee_issues-index-pattern.json
+  menu:
+  - name: Overview
+    panel: panels/json/gitee_issues.json
+  - name: Backlog
+    panel: panels/json/gitee_issues_backlog.json
+  - name: Timing
+    panel: panels/json/gitee_issues_timing.json
+  - name: Efficiency
+    panel: panels/json/gitee_issues_efficiency.json
+- name: Gitee Repos
+  source: gitee
+  icon: default.png
+  index-patterns:
+  - panels/json/gitee_repositories-index-pattern.json
+  menu:
+  - name: Overview
+    panel: panels/json/gitee_repositories.json
